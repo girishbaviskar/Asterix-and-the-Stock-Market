@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+package com.compsci677.lab1.part2;
+
+enum REQUEST_STATUS{
+  TRADING_SUSPENDED = 0;
+  INVALID_STOCK_NAME = -1;
+  INVALID_PRICE = -2;
+  SUCCESSFUL = 1;
+}
+
+enum TRADE_TYPE{
+  SELL = 0;
+  BUY = 1;
+}
+
+message LookupRequest {
+  string stockName = 1;
+}
+
+message LookupResponse {
+  REQUEST_STATUS status = 1;
+  float price = 2;
+  int64 tradingVolume = 3;
+}
+
+message TradeRequest {
+  string stockName = 1;
+  int64 numStocks = 2;
+  TRADE_TYPE tradeType = 3;
+}
+
+message TradeResponse {
+  REQUEST_STATUS status = 1;
+}
+
+message UpdateRequest {
+  string stockName = 1;
+  float price = 2;
+}
+
+message UpdateResponse {
+  REQUEST_STATUS status = 1;
+}
+
+service TradingService {
+
+  rpc lookup(LookupRequest) returns (LookupResponse);
+
+  rpc trade(TradeRequest) returns (TradeResponse);
+
+  rpc update(UpdateRequest) returns (UpdateResponse);
+}

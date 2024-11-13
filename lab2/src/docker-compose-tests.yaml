@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  tests:
+    build:
+      context: .
+      dockerfile: DockerfileForTest
+    command: python -m unittest discover -s tests -p '*_tests.py' -v
+    environment:
+      - FES_PORT=8080
+      - FES_HOSTNAME=0.0.0.0
+      - CAS_HOSTNAME=0.0.0.0
+      - CAS_PORT=8081
+      - ORS_HOSTNAME=0.0.0.0
+      - ORS_PORT=8082
+      - DB_PATH = ./test_db
+      - DB_NAME = test_db.db
+      - LOG_PATH = ./log
+      - LOG_NAME = log.log

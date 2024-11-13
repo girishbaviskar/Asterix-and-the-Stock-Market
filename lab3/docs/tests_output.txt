@@ -1,0 +1,38 @@
+src-tests-1           | test_invalidLookup (catalogservice_tests.CatalogTests)
+src-tests-1           | Tests an invalid lookup request ... ok
+src-tests-1           | test_invalidUpdate (catalogservice_tests.CatalogTests)
+src-tests-1           | Tests invalid stock update (order) ... ok
+src-tests-1           | test_lookup (catalogservice_tests.CatalogTests)
+src-tests-1           | Tests lookup request ... ok
+src-tests-1           | test_update (catalogservice_tests.CatalogTests)
+src-tests-1           | Tests stock update (order) ... ok
+src-tests-1           | test_invalidLookup (frontend_tests.FrontendTests)
+src-tests-1           | Tests an invalid lookup request ... ok
+src-tests-1           | test_invalidOrder (frontend_tests.FrontendTests)
+src-tests-1           | Tests an invalid order request ... ok
+src-tests-1           | test_invalidOrderLookup (frontend_tests.FrontendTests)
+src-tests-1           | Tests valid invalid order lookup ... ok
+src-tests-1           | test_invalidRequest (frontend_tests.FrontendTests)
+src-tests-1           | Tests an invalid path for request ... ok
+src-tests-1           | test_lookup (frontend_tests.FrontendTests)
+src-tests-1           | Tests lookup request ... ok
+src-tests-1           | test_order (frontend_tests.FrontendTests)
+src-tests-1           | Tests a valid order request ... ok
+src-tests-1           | test_validOrderAndOrderLookup (frontend_tests.FrontendTests)
+src-tests-1           | Tests valid order and order lookup ... ok
+src-tests-1           | test_invalidOrderLookup (orderservice_tests.OrderTests)
+src-tests-1           | Tests valid invalid order lookup ... ok
+src-tests-1           | test_invalidStock (orderservice_tests.OrderTests)
+src-tests-1           | Tests invalid Stock Name ... ok
+src-tests-1           | test_invalidTransaction (orderservice_tests.OrderTests)
+src-tests-1           | Tests invalid order ... ok
+src-tests-1           | test_validTransaction (orderservice_tests.OrderTests)
+src-tests-1           | Tests valid order ... ok
+src-tests-1           | test_validTransactionAndOrderLookup (orderservice_tests.OrderTests)
+src-tests-1           | Tests valid order and order lookup ... ok
+src-tests-1           |
+src-tests-1           | ----------------------------------------------------------------------
+src-tests-1           | Ran 16 tests in 0.665s
+src-tests-1           |
+src-tests-1           | OK
+src-tests-1 exited with code 0

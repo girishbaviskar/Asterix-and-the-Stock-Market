@@ -1,0 +1,52 @@
+version: "3"
+
+services:
+  frontend:
+    build: ./frontend
+    command: python main.py
+    depends_on:
+      - catalogservice
+      - orderservice
+    ports:
+      - "127.0.0.1:8080:8080"
+    restart: always
+    environment:
+      - FES_PORT=8080
+      - FES_HOSTNAME=0.0.0.0
+      - CAS_HOSTNAME=catalogservice
+      - CAS_PORT=8081
+      - ORS_HOSTNAME=orderservice
+      - ORS_PORT=8082
+
+  catalogservice:
+    build: ./catalogservice
+    command: python main.py
+    environment:
+      - CAS_HOSTNAME=0.0.0.0
+      - CAS_PORT=8081
+      - DB_PATH=/shared_directory/db
+      - DB_NAME=catalog.db
+    volumes:
+      - type: volume
+        source: shared_directory
+        target: /shared_directory
+    restart: always
+
+  orderservice:
+    build: ./orderservice
+    command: python main.py
+    environment:
+      - CAS_HOSTNAME=catalogservice
+      - CAS_PORT=8081
+      - ORS_HOSTNAME=0.0.0.0
+      - ORS_PORT=8082
+      - LOG_PATH=/shared_directory/log
+      - LOG_NAME=transactions.log
+    volumes:
+      - type: volume
+        source: shared_directory
+        target: /shared_directory
+    restart: always
+
+volumes:
+  shared_directory:

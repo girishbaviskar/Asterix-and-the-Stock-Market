@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  frontend:
+    build: ./frontend
+    command: sh -c 'sleep 3 && gunicorn -w 1 "server:create_frontend()" --bind 0.0.0.0:9999 --threads=1000 '
+    depends_on:
+      - catalogservice
+      - orderservice
+    ports:
+      - "127.0.0.1:5100:9999"
+
+  orderservice:
+    build: ./orderservice
+    command: sh -c 'dig -x "$(hostname -i)" +short > container.name && gunicorn -w 1 "server:create_orderservice()" --bind 0.0.0.0:9999 --threads=1000 --graceful-timeout=10'
+    depends_on:
+      - catalogservice
+    volumes:
+      - type: volume
+        source: test_volume
+        target: /db
+
+  catalogservice:
+    build: ./catalogservice
+    command: gunicorn -w 1 "server:create_catalogservice()" --bind 0.0.0.0:9999 --threads=1000
+    volumes:
+      - type: volume
+        source: test_volume
+        target: /db
+
+  tests:
+    build: ./tests
+    command: sh -c 'sleep 7 && python -m unittest discover -s . -p "*_tests.py" -v'
+    volumes:
+      - type: volume
+        source: test_volume
+        target: /db
+
+volumes:
+  shared_volume:
+  test_volume:
